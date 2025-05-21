@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>曾志鸿的简历</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            background: #f0f2f5;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid #3498db;
+        }
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-right: 2rem;
+            border: 3px solid #3498db;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .avatar:hover {
+            transform: scale(1.05);
+        }
+
+        .personal-info {
+            flex: 1;
+        }
+
+        .name {
+            font-size: 2.2rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-list {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+   
+        .section {
+            margin-bottom: 2.5rem;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .section:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .section h2 {
+            color: #3498db;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #eee;
+        }
+        .timeline-item {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: white;
+            border-left: 3px solid #3498db;
+        }
+
+        .timeline-item h3 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .avatar {
+                margin: 0 0 1.5rem 0;
+            }
+
+            .contact-list {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <img src="a.jpg" alt="头像" class="avatar" id="avatar">
+            <div class="personal-info">
+                <h1 class="name" id="name">曾志鸿</h1>
+                <ul class="contact-list">
+                    <li>性别 男</li>
+                    <li>邮箱 1524002095@qq.com</li>
+                    <li>电话 19870790619</li>
+                    <li>生日 2005.1.1 </li>
+                </ul>
+            </div>
+        </header>
+
+        <!-- 教育背景 -->
+        <section class="section">
+            <h2>🎓 教育背景</h2>
+            <div id="education"></div>
+        </section>
+
+        <!-- 工作经历 -->
+        <section class="section">
+            <h2>💼 工作经历</h2>
+            <div id="experience"></div>
+        </section>
+
+        <!-- 自我介绍 -->
+        <section class="section">
+            <h2>✨ 自我介绍</h2>
+            <p id="introduction"></p>
+        </section>
+    </div>
+
+<script>
+// 简历数据对象（可修改数据生成不同简历）
+const resumeData = {
+    name: "曾志鸿",
+    avatar: "a.jpg", // 默认头像路径
+    education: [
+        {
+            institution: "平川中学",
+            degree:"理科",
+            duration: "2020-2023",
+            description: "优秀毕业生"
+        },
+        {
+            institution: "上海对外经贸大学",
+            degree: "人工智能专业",
+            duration: "2023-至今",
+            description: "仍在学习"
+        }
+    ],
+    experience: [
+        {
+            company: "ABC",
+            position: "……",
+            duration: "……",
+            description: "……"
+        },
+        {
+            company: "DEF",
+            position: "……",
+            duration: "……",
+            description: "……"
+        }
+    ],
+    introduction: "一个普通大学生，正在学习专业相关知识"
+};
+
+function initResume() {
+    document.getElementById('name').textContent = resumeData.name;
+    document.getElementById('avatar').src = resumeData.avatar;
+    document.getElementById('introduction').textContent = resumeData.introduction;
+
+    const educationContainer = document.getElementById('education');
+    resumeData.education.forEach(edu => {
+        const div = document.createElement('div');
+        div.className = 'timeline-item';
+        div.innerHTML = `
+            <h3>${edu.institution}</h3>
+            <p><strong>${edu.degree}</strong> | ${edu.duration}</p>
+            <p>${edu.description}</p>
+        `;
+        educationContainer.appendChild(div);
+    });
+
+    const experienceContainer = document.getElementById('experience');
+    resumeData.experience.forEach(exp => {
+        const div = document.createElement('div');
+        div.className = 'timeline-item';
+        div.innerHTML = `
+            <h3>${exp.company}</h3>
+            <p><strong>${exp.position}</strong> | ${exp.duration}</p>
+            <p>${exp.description}</p>
+        `;
+        experienceContainer.appendChild(div);
+    });
+}
+document.addEventListener('DOMContentLoaded', initResume);
+</script>
+</body>
+</html>
